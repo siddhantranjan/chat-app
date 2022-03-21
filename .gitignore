@@ -1,0 +1,59 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/chat-app-frontend/node_modules
+/chat-app-frontend/.pnp
+/chat-app-frontend/.pnp.js
+
+# testing
+/chat-app-frontend/coverage
+
+# production
+/chat-app-frontend/build
+
+# misc
+/chat-app-frontend/.DS_Store
+/chat-app-frontend/.env.local
+/chat-app-frontend/.env.development.local
+/chat-app-frontend/.env.test.local
+/chat-app-frontend/.env.production.local
+
+/chat-app-frontend/npm-debug.log*
+/chat-app-frontend/yarn-debug.log*
+/chat-app-frontend/yarn-error.log*
+
+# compiled output
+/chat-app-backend/dist
+/chat-app-backend/node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/chat-app-backend/coverage
+/chat-app-backend/.nyc_output
+
+# IDEs and editors
+/chat-app-backend/.idea
+/chat-app-backend/.project
+/chat-app-backend/.classpath
+/chat-app-backend/.c9/
+/chat-app-backend/*.launch
+/chat-app-backend/.settings/
+/chat-app-backend/*.sublime-workspace
+
+# IDE - VSCode
+/chat-app-backend/.vscode/*
+/chat-app-backend/!.vscode/settings.json
+/chat-app-backend/!.vscode/tasks.json
+/chat-app-backend/!.vscode/launch.json
+/chat-app-backend/!.vscode/extensions.json

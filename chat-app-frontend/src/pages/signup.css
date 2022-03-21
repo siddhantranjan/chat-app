@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+  background-color: #ccc;
+}
+
+.box {
+  height: fit-content;
+  background-color: rgba(52, 97, 100, 0.171);
+  width: 360px;
+  border-radius: 20px;
+}
+
+input,
+select {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 14px auto 2px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type="submit"],
+select {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 36px auto 14px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type="submit"]:hover {
+  background-color: aquamarine;
+}
+
+.alternative {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2px;
+}
+
+.buttonBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: darkslategrey;
+  text-decoration: none;
+}

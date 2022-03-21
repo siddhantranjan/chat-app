@@ -1,0 +1,48 @@
+###create a new User
+POST http://localhost:4000/users/signup
+content-type: application/json
+
+{
+    "email": "champ.siddy@gmail.com",
+    "username": "nightseeker1",
+    "firstName": "Siddhant",
+    "lastName": "ranjan",
+    "password": "random",
+    "phoneNo": 8987368281
+}
+
+### User Sign In
+POST http://localhost:4000/users/signin
+content-type: application/json
+
+{
+    "username": "mohit@gmail.com",
+    "password": "random"
+}
+
+### Get User Profile using jwt token
+GET http://localhost:4000/users/profile
+
+### Get User Profile using jwt token
+GET http://localhost:4000/users/signout
+
+### Get a all user with given email id
+GET http://localhost:4000/users?email=champ.siddy@gmail.com
+
+### Get user with id
+GET  http://localhost:4000/users/2
+
+### Get all User
+GET http://localhost:4000/users/all
+
+
+### delete user with id
+DELETE  http://localhost:4000/users/4
+
+### Update user
+PATCH http://localhost:4000/users/1
+content-type: application/json
+
+{
+    "password": "random"
+}

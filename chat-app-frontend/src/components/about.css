@@ -1,0 +1,18 @@
+.user-container {
+    width: 40%;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+    direction:rtl;
+}
+
+.profile {
+    margin-left: 20px;
+}
+
+.user-profile {
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: contain;
+}
