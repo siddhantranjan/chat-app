@@ -10,7 +10,6 @@ async function bootstrap() {
   });
 
   app.use(cookieParser());
-  //app.useWebSocketAdapter();
   await app.listen(4000);
 }
 bootstrap();

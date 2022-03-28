@@ -1,6 +1,6 @@
 .list-container {
     width: 40%;
-    margin: auto;
+    margin-left: 0px;
     margin-top: 20px;
     display: flex;
     justify-content: flex-start;

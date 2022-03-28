@@ -63,10 +63,7 @@ const useChat = () => {
   }
 
   const joinRoom = async (room) => {
-    socketRef.current.emit('joinRoom', {
-      body: room,
-      senderId: socketRef.current.id
-    })
+    socketRef.current.emit('joinRoom', room)
   }
 
   return { messages,sendMessage, joinRoom, createRoom, getRoom };

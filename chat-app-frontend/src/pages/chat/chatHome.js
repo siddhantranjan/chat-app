@@ -52,7 +52,7 @@ export default function ChatHome() {
         <div className='room-family'>
           {rooms && rooms.length !== 0 ? (rooms.map((currentRoom, i) => (
             <p key={i} onClick={(e) => handleJoinRoom(e, currentRoom)} style={{ cursor: "pointer" }}>{currentRoom.name}</p>
-          ))) : null}
+          ))) : <div style={{width: "fit-content", margin: "auto", marginTop: "20px"}}>No Rooms</div>}
         </div>
         <div className='button-family'>
           <button className="enter-room-button" onClick={handleSeeRoom} >See room</button>
@@ -60,20 +60,31 @@ export default function ChatHome() {
         </div>
       </div>
       <div className="chat-room-container">
-        <h1>Room: {roomName}</h1>
-        <button className="leave-room" onClick={handleLeaveRoom}>Leave Room</button>
-        <ChatRoom allMessages={messages} />
-        <div className="input-send">
-          <input
-            value={newMessage}
-            onChange={handleNewMessageChange}
-            placeholder="Write message..."
-            className="new-message-input-field"
-          />
-          <button onClick={handleSendMessage} className="send-message-button">
-            Send
-          </button>
-        </div>
+        <h1>{roomName}</h1>
+        <button className="leave-room" onClick={handleLeaveRoom}>Leave Chat</button>
+        {
+          roomName !== '' ? (
+            <>
+              <ChatRoom allMessages={messages} />
+              <div className="input-send">
+                <input
+                  value={newMessage}
+                  onChange={handleNewMessageChange}
+                  placeholder="Write message..."
+                  className="new-message-input-field"
+                />
+                <button onClick={handleSendMessage} className="send-message-button">
+                  Send
+                </button>
+              </div>
+            </>
+          ) : (
+            <div>
+              Click on room to See the messages
+            </div>
+          )
+        }
+
       </div>
     </div>
   );

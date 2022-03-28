@@ -133,14 +133,6 @@
     align-items: center;
     flex-direction: column;
   }
-
-  .list-container {
-    width: 40%;
-    margin: auto;
-    margin-top: 20px;
-    display: flex;
-    justify-content: flex-start;
-}
   
   /* User Profile */
   .user-header-wrapper {

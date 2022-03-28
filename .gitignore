@@ -57,3 +57,5 @@ lerna-debug.log*
 /chat-app-backend/!.vscode/tasks.json
 /chat-app-backend/!.vscode/launch.json
 /chat-app-backend/!.vscode/extensions.json
+
+chat-app-backend/db.sqlite

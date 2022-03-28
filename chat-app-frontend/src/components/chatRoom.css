@@ -49,7 +49,23 @@
     float: right;
 }
 
+.my-message .message-body{
+    float: left;
+}
+
+.my-message .message-info{
+    float: right;
+}
+
 .received-message {
+    float: left;
+}
+
+.received-message .message-body {
+    float: right;
+}
+
+.received-message .message-info{
     float: left;
 }
 
@@ -68,6 +84,11 @@
 }
 
 .firstName {
+    font-size: 8px;
+    margin: 0;
+}
+
+.message-info{
     font-size: 8px;
     margin: 0;
 }

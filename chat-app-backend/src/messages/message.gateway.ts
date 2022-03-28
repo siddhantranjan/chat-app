@@ -12,7 +12,8 @@ import { RoomService } from './service/room/room.service';
 import { ConnectedUserService } from './service/connected-user/connectedUser.service';
 import { JoinedRoomService } from './service/joined-room/joinedRoom.service';
 import { MessagesService } from './service/messages/messages.service';
-import { join } from 'path';
+import { CreateRoomDto } from './dtos/room/create-room.dto';
+import { Room } from './dtos/room/room.interface';
 
 @WebSocketGateway({
   cors: {
@@ -45,19 +46,16 @@ export class MessageGateway
   }
 
   @SubscribeMessage('joinRoom')
-  async joinRoom(client: Socket, room: any) {
-    const messages = await this.messagesService.findMessagesForRoom(
-      room.body.id,
-      {
-        limit: '',
-        page: '',
-      },
-    );
+  async joinRoom(client: Socket, room: Room) {
+    const messages = await this.messagesService.findMessagesForRoom(room.id, {
+      limit: '',
+      page: '',
+    });
 
     await this.joinedRoomService.create({
       socketId: client.id,
       user: JSON.parse(JSON.stringify(client.data.user)),
-      room: room.body,
+      room: room,
     });
     await this.server.to(client.id).emit('messages', [...messages.items]);
   }
@@ -68,7 +66,7 @@ export class MessageGateway
   }
 
   @SubscribeMessage('createRoom')
-  async onCreateRoom(client: Socket, room: any) {
+  async onCreateRoom(client: Socket, room: CreateRoomDto) {
     const createRoom = await this.roomService.createRoom(
       room,
       client.data.user,

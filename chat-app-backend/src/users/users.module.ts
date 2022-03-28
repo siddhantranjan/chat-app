@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { RelationshipModule } from 'src/relationship/relationship.module';
 import { AuthService } from './auth/auth.service';
 import { jwtConstants } from './auth/constatns';
 import { JwtStrategy } from './auth/jwt.strategy';
@@ -18,6 +19,7 @@ import { UsersService } from './users.service';
       secret: jwtConstants.secret_key,
       signOptions: { expiresIn: '600s' },
     }),
+    forwardRef(() => RelationshipModule),
   ],
   controllers: [UsersController],
   providers: [UsersService, AuthService, LocalStrategy, JwtStrategy],

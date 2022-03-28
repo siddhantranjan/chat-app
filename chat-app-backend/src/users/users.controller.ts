@@ -11,6 +11,7 @@ import {
   Request,
   UnauthorizedException,
   Res,
+  NotFoundException,
 } from '@nestjs/common';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/jwt-auth-guard';
@@ -22,12 +23,14 @@ import { UsersService } from './users.service';
 import { Response } from 'express';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { UserDto } from './dtos/user.dto';
+import { RelationshipService } from 'src/relationship/relationship.service';
 
 @Controller('users')
 export class UsersController {
   constructor(
     private usersService: UsersService,
     private authService: AuthService,
+    private relationshipService: RelationshipService,
   ) {}
 
   @Serialize(UserDto)
@@ -80,8 +83,22 @@ export class UsersController {
   @Serialize(UserDto)
   @UseGuards(JwtAuthGuard)
   @Get()
-  findAllUser(@Query('email') email: string) {
-    return this.usersService.findAll(email);
+  async findAllUser(@Query('email') email: string, @Request() req) {
+    const currentUser = req.user;
+    const user = await this.usersService.findAll(email);
+    if (user.length === 0) {
+      throw new NotFoundException('User Not Found');
+    }
+    const relation = await this.relationshipService.findRelation(
+      currentUser.userId,
+      user[0].id,
+    );
+
+    if (relation && relation.status === 'blocked') {
+      throw new NotFoundException('User Not Found');
+    }
+
+    return user;
   }
 
   @Serialize(UserDto)

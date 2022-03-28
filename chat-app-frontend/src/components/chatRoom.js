@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import "./chatRoom.css";
 
 const ChatRoom = ({allMessages}) => {
@@ -12,9 +13,11 @@ const ChatRoom = ({allMessages}) => {
               message.ownedByCurrentUser ? "my-message" : "received-message"
             }`}
           >
+            <p className="message-info">{message.user.username}</p><br/>
+            <p className="message-info">{moment(message.created_at).format('hh:mm A')}</p>
             <p className="message-body">{message.text}</p>
           </li>
-          ))): (null)}
+          ))): (<div>No messages</div>)}
         </ol>
       </div>
   );
