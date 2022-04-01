@@ -68,4 +68,8 @@ export class RelationshipService {
     Object.assign(relation, { sender, recepient, status });
     return this.repo.save(relation);
   }
+
+  async deleteAll() {
+    await this.repo.createQueryBuilder().delete().execute();
+  }
 }

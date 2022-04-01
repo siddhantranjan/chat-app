@@ -3,10 +3,10 @@ POST http://localhost:4000/users/signup
 content-type: application/json
 
 {
-    "email": "Inderan@gmail.com",
-    "username": "inderan",
-    "firstName": "Inderan",
-    "lastName": "Kannan",
+    "email": "vijaya@gmail.com",
+    "username": "vijaya",
+    "firstName": "Vijaya",
+    "lastName": "Roy",
     "password": "random",
     "phoneNo": 8987368281
 }
@@ -16,7 +16,7 @@ POST http://localhost:4000/users/signin
 content-type: application/json
 
 {
-    "username": "manish@gmail.com",
+    "username": "champ.siddy@gmail.com",
     "password": "random"
 }
 

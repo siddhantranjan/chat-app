@@ -54,7 +54,7 @@ export class AuthService {
     const users = await this.userService.findAll(body.email);
 
     if (users.length) {
-      throw new BadRequestException('Email Already exist;');
+      throw new BadRequestException('Email Already exist');
     }
 
     const usernameExist = await this.userService.findUsername(body.username);
@@ -71,7 +71,7 @@ export class AuthService {
 
     const user = await this.userService.create(body);
 
-    const payload = { username: user.email, sub: user.id };
+    const payload = { username: user.email, id: user.id };
     const accessToken = this.jwtService.sign(payload);
 
     return { user, accessToken };

@@ -8,6 +8,7 @@ import {
   Query,
   Request,
   UseGuards,
+  Delete,
 } from '@nestjs/common';
 import { RelationshipService } from './relationship.service';
 import { CreateRelationshipDto } from './dto/create-relationship.dto';
@@ -30,6 +31,10 @@ export class RelationshipController {
   ) {
     const { userId } = req.user;
 
+    if (!userId) {
+      throw new BadRequestException();
+    }
+
     if (userId === recepient) {
       throw new BadRequestException('Invalid parameters');
     }
@@ -43,6 +48,17 @@ export class RelationshipController {
     }
 
     return this.relationshipService.create(userId, recepient, status);
+  }
+
+  @Get('/get')
+  async getRelation(@Query('recepient') recepient: number, @Request() req) {
+    const { userId } = req.user;
+    const relation = await this.relationshipService.findRelation(
+      userId,
+      recepient,
+    );
+
+    return relation;
   }
 
   @Get('/')
@@ -73,5 +89,10 @@ export class RelationshipController {
     }
 
     return this.relationshipService.update(userId, recepient, status);
+  }
+
+  @Delete('/all')
+  async deleteAll() {
+    await this.relationshipService.deleteAll();
   }
 }

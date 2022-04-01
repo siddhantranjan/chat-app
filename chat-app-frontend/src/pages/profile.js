@@ -9,6 +9,8 @@ import FriendList from "../components/friend-list";
 import { GetRelation } from "../service/get-relation";
 import About from "../components/about";
 import { updateRelation } from "../service/update-relation";
+import { createRelation } from "../service/create-relation";
+import { GetRelationWithUser } from "../service/get-relation-with-user";
 
 export default function Profile() {
     const navigate = useNavigate();
@@ -17,6 +19,7 @@ export default function Profile() {
     const [friend, setFriend] = useState([])
     const [request, setRequest] = useState([])
     const [usernameInput, setUsernameInput] = useState('')
+    const [relation, setRelation] = useState('')
     const { name, username, id } = JSON.parse(localStorage.getItem('user'))
 
     const [choice, setChoice] = useState();
@@ -30,6 +33,12 @@ export default function Profile() {
     const getUser = async(event) => {
         event.preventDefault()
         const user = await GetUser(usernameInput);
+        const relation = await GetRelationWithUser(user.id)
+
+        if(relation){
+            setRelation(relation.status)
+        }
+
         setUserRequest(user)
     }
 
@@ -38,8 +47,10 @@ export default function Profile() {
         if(userRequest.id === id){
             console.log('Error: Invalid Operation')
         }
-
-        await updateRelation(userRequest.id, 'pending');
+        
+        if(relation === ''){
+            await createRelation(userRequest.id, 'pending');
+        }
     }
 
     const handleUsernameChange = async (event) => {
@@ -155,7 +166,7 @@ export default function Profile() {
                             <div >
                                 <p>{userRequest.firstName} {userRequest.lastName}</p>
                                 <p>{userRequest.username}</p>
-                                <button onClick={sendRequest}>Add Friend</button>
+                                <button onClick={sendRequest}>{relation.length !== 0 ? relation : 'Add Friend'}</button>
                             </div>
                         </div>):(null)
                         }
